@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->date('dob');
             $table->text('profile_picture')->nullable();
+            $table->integer('total_points')->default(0);
             $table->enum('role', ['admin', 'member', 'non-member'])->default('non-member');
             $table->rememberToken();
             $table->timestamps();
