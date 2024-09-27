@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    public function quizzes()
+    {
+        return $this->belongsToMany(Quiz::class)->withPivot('score')->withTimestamps();
+    }
 }

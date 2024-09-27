@@ -146,10 +146,12 @@ class MediaSeeder extends Seeder
             $mediaData->genre()->attach($genres);
         }
 
+        // dummy review
         foreach (Media::all() as $media) {
             Review::factory()->count(3)->create(['media_id' => $media->id]);
         }
 
+        // dummy reply
         foreach (Review::all() as $review) {
             Reply::factory()->count(2)->create(['review_id' => $review->id]);
         }

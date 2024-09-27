@@ -22,4 +22,8 @@ class Media extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function quiz(){
+        return $this->hasOne(Quiz::class);
+    }
 }

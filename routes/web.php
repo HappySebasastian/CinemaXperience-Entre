@@ -15,6 +15,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Middleware\VerifyCsrfToken;
@@ -61,7 +62,7 @@ Route::middleware(['auth', 'role:member,non-member'])->group(function(){
     Route::post('/user/friendrequests/reject/{friendId}', [FriendController::class, 'rejectFriend'])->name('friendrequests.reject');
     Route::post('/user/friendrequests/cancel/{friendId}', [FriendController::class, 'cancelRequest'])->name('friendrequests.cancel');
 
-    
+
     Route::get('/user/addfriend', [FriendController::class, 'showAddFriendForm'])->name('addfriend');
 
     //searching
@@ -83,8 +84,12 @@ Route::middleware(['auth', 'role:member,non-member'])->group(function(){
 
     Route::get('/user/mediaDetails/{id}', [MediaDetailsController::class, 'showDetails'])->name('detail.show');
 
+
     Route::resource('reviews', ReviewController::class);
+
     Route::resource('replies', ReplyController::class);
+
+    Route::resource('quiz', QuizController::class);
 
 });
 

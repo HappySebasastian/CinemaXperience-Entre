@@ -22,7 +22,8 @@ class GenreSeeder extends Seeder
             ['genre_type' => 'action', 'created_at' => $time, 'updated_at' => $time],
             ['genre_type' => 'melodrama', 'created_at' => $time, 'updated_at' => $time],
             ['genre_type' => 'romantic-comedy', 'created_at' => $time, 'updated_at' => $time],
-            ['genre_type' => 'thriller', 'created_at' => $time, 'updated_at' => $time]
+            ['genre_type' => 'thriller', 'created_at' => $time, 'updated_at' => $time],
+            ['genre_type' => 'horror', 'created_at' => $time, 'updated_at' => $time]
         ];
 
         Genre::insert($genres);
