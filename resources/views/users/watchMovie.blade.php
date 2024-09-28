@@ -23,7 +23,7 @@
             <div class="flex justify-between items-center">
                 <p class="text-white mb-4">Release Date: {{ $movie->released_date }}</p>
                 <div class="flex justify-center">
-                    <a href="{{ route('quiz.index', ['id' => $movie->id]) }}" class="bg-yellow-400 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded-xl">
+                    <a href="{{ route('quiz.show', $movie->id) }}" class="bg-yellow-400 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded-xl">
                         Take the Quiz
                     </a>
                 </div>

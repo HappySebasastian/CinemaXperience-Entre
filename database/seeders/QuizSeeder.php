@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB; // Import the DB facade
+use Carbon\Carbon; // Import Carbon for date and time handling
 
 class QuizSeeder extends Seeder
 {
@@ -12,14 +13,13 @@ class QuizSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('quizzes')->insert([[
-            'media_id' => '1',
-            'title' => 'Alchemy of Souls Quizzes',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-
-
-        ]
+        DB::table('quizzes')->insert([
+            [
+                'media_id' => 1, // Use integer for foreign key
+                'title' => 'Alchemy of Souls Quizzes',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]
         ]);
     }
 }

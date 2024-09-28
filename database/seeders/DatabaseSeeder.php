@@ -26,7 +26,11 @@ class DatabaseSeeder extends Seeder
             MediaSeeder::class,
             FriendSeeder::class,
             WatchPartySeeder::class,
-            WatchPartyParticipantsSeeder::class
+            WatchPartyParticipantsSeeder::class,
+            QuizSeeder::class,
+            QuestionSeeder::class,
+            AnswerSeeder::class
+
         ]);
     }
 }

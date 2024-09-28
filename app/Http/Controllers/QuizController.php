@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Quiz;
+use App\Models\Question;
 
 use Illuminate\Http\Request;
 
@@ -11,7 +13,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return view('users.quizPage');
+
 
 
     }
@@ -37,7 +39,15 @@ class QuizController extends Controller
      */
     public function show(string $id)
     {
+        $quiz = Quiz::where('media_id', $id)->first();
+        if (!$quiz) {
+            // Handle the case where the quiz is not found
+            return redirect()->back()->with('error', 'Quiz not found');
+        }
+        $questions = Question::where('quiz_id', $quiz->id)->with('answer')->get();
 
+
+        return view('users.quizPage', compact('quiz', 'questions'));
     }
 
     /**

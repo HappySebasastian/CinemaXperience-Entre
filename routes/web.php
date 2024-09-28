@@ -82,14 +82,14 @@ Route::middleware(['auth', 'role:member,non-member'])->group(function(){
     Route::post('/user/leave/{id}', [WatchMovieController::class, 'leaveParty'])->name('wp.leave');
     Route::post('/user/watchParty/{id}/sendMessage', [WatchMovieController::class, 'sendMessage'])->name('wp.sendMessage');
 
-    Route::get('/user/mediaDetails/{id}', [MediaDetailsController::class, 'showDetails'])->name('detail.show');
+    Route::get('/user/media Details/{id}', [MediaDetailsController::class, 'showDetails'])->name('detail.show');
 
 
     Route::resource('reviews', ReviewController::class);
 
     Route::resource('replies', ReplyController::class);
 
-    Route::resource('/user/quiz', QuizController::class);
+    Route::resource('quiz', QuizController::class);
 
 
 
