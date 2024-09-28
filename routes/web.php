@@ -89,7 +89,9 @@ Route::middleware(['auth', 'role:member,non-member'])->group(function(){
 
     Route::resource('replies', ReplyController::class);
 
-    Route::resource('quiz', QuizController::class);
+    Route::resource('/user/quiz', QuizController::class);
+
+
 
 });
 
