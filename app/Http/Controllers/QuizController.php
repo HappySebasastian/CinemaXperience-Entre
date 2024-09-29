@@ -5,6 +5,7 @@ use App\Models\Quiz;
 use App\Models\Question;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
@@ -74,18 +75,18 @@ class QuizController extends Controller
         //
     }
 
-//     public function submitPoints(Request $request)
-// {
-//     $points = $request->input('points');
-//     $user = Auth::user();
+    public function submitPoints(Request $request)
+{
+    $points = $request->input('points');
+    $user = Auth::user();
 
-//     // Add points to the user's total points
-//     $user->total_point += $points;
-//     $user->save();
 
-//     return response()->json([
-//         'message' => 'Points added successfully',
-//         'total_points' => $user->total_point
-//     ]);
-// }
+    $user->total_points += $points;
+    $user->save();
+
+    return response()->json([
+        'message' => 'Points added successfully',
+        'total_points' => $user->total_points
+    ]);
+}
 }

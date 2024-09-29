@@ -5,11 +5,11 @@
 @section('css')
     <style>
         .active-answer {
-            background-color: #fbbf24 !important; /* Yellow with !important */
-            color: #000 !important; /* Black text with !important */
+            background-color: #fbbf24 !important;
+            color: #000 !important;
         }
 
-        /* Modal Styles */
+
         .modal {
             display: none;
             position: fixed;
@@ -18,7 +18,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Black background with opacity */
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
         .modal-content {
@@ -52,17 +52,17 @@
     <div class="bg-black-600 flex flex-col justify-center pt-4 h-3/5 py-20">
         <h1 class="ml-14 text-yellow-400 text-4xl font-bold mb-6">{{ $quiz->title }}</h1>
 
-        <!-- Start a form to capture answers -->
+
         <form id="quiz-form">
             @csrf
-            <!-- Loop through each question -->
+
             @foreach($questions as $question)
 
-                <!-- Quiz Container for each question -->
+
                 <div class="bg-stone-700 rounded-lg p-6 border-4 border-yellow-400 w-4/5 mb-16 mx-auto h-3/5" data-question-id="{{ $question->id }}">
                     <h1 class="text-yellow-400 text-2xl font-bold mb-6">{{ $loop->iteration }}. {{ $question->question_text }}</h1>
 
-                    <!-- Loop through each answer for the current question -->
+
                     <div class="space-y-4">
                         @foreach($question->answers as $answer)
                             <button
@@ -86,46 +86,53 @@
     </div>
 </div>
 
-<!-- Modal HTML -->
+{{-- Modal --}}
 <div id="resultModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
+    <div class="modal-content items-center">
+        {{-- <span class="close">&times;</span> --}}
         <h2>Quiz Results</h2>
         <p id="correctAnswers"></p>
         <p id="totalPoints"></p>
-        <button id="close-modal-btn" class="bg-yellow-400 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded-xl">Close</button>
+        <button id="back-btn" class="bg-yellow-400 hover:bg-yellow-600 text-black font-bold py-2 px-6 rounded-xl w-1/4 mb-2">Back</button>
+        <a href="{{ route('leaderboard.show') }}" class="bg-yellow-400 hover:bg-yellow-600 text-black font-bold py-2 w-1/4 px-6 rounded-xl">Leaderboard</a>
     </div>
 </div>
 
-{{-- Add the script here --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
+
+document.getElementById('back-btn').addEventListener('click', function () {
+    window.history.back();
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelectorAll('.answer-btn');
     let selectedAnswers = {};
 
-    // Add click event listener to each answer button
+
     buttons.forEach(button => {
         button.addEventListener('click', function () {
             const questionId = this.closest('.bg-stone-700').getAttribute('data-question-id');
             const answerId = this.getAttribute('data-answer-id');
             const isCorrect = this.getAttribute('data-correct') === '1';
 
-            // Get the parent container for answers of the same question
+
             const parent = this.closest('.space-y-4');
 
-            // Remove the active class from all buttons in the same question block
+
             parent.querySelectorAll('.answer-btn').forEach(btn => {
                 btn.classList.remove('active-answer');
-                btn.style.backgroundColor = '';  // Reset styles
-                btn.style.color = '';  // Reset styles
+                btn.style.backgroundColor = '';
+                btn.style.color = '';
             });
 
-            // Add the active class to the clicked button
-            this.classList.add('active-answer');
-            this.style.backgroundColor = '#fbbf24';  // Apply styles directly
-            this.style.color = '#000';  // Apply styles directly
 
-            // Store the selected answer and whether it's correct
+            this.classList.add('active-answer');
+            this.style.backgroundColor = '#fbbf24';
+            this.style.color = '#000';
+
+
             selectedAnswers[questionId] = {
                 answerId: answerId,
                 isCorrect: isCorrect
@@ -133,31 +140,69 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Handle form submission and calculate points
+
     document.getElementById('submit-btn').addEventListener('click', function (e) {
         e.preventDefault();
         let correctCount = 0;
         let totalQuestions = Object.keys(selectedAnswers).length;
 
-        // Count the correct answers
         for (let key in selectedAnswers) {
             if (selectedAnswers[key].isCorrect) {
                 correctCount++;
             }
         }
 
-        const points = correctCount * 100; // Calculate points
+        const points = correctCount * 100;
 
-        // Update the modal content with correct answers and points
+        // Set the result text
         document.getElementById('correctAnswers').textContent = `You got ${correctCount} out of ${totalQuestions} correct!`;
         document.getElementById('totalPoints').textContent = `Total Points: ${points}`;
 
-        // Show the modal
+        // Display the modal
         const modal = document.getElementById('resultModal');
         modal.style.display = 'block';
+
+        // Send points to the server
+        $.ajax({
+            url: '{{ route("quiz.submitPoints") }}',
+            type: 'POST',
+            data: {
+                points: points,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                console.log('Points updated successfully!');
+            },
+            error: function() {
+                console.log('Error updating points.');
+            }
+        });
     });
 
-    // Close the modal when the user clicks on <span> (x) or the "Close" button
+    // document.getElementById('submit-btn').addEventListener('click', function (e) {
+    //     e.preventDefault();
+    //     let correctCount = 0;
+    //     let totalQuestions = Object.keys(selectedAnswers).length;
+
+
+    //     for (let key in selectedAnswers) {
+    //         if (selectedAnswers[key].isCorrect) {
+    //             correctCount++;
+    //         }
+    //     }
+
+    //     const points = correctCount * 100;
+
+
+    //     document.getElementById('correctAnswers').textContent = `You got ${correctCount} out of ${totalQuestions} correct!`;
+    //     document.getElementById('totalPoints').textContent = `Total Points: ${points}`;
+
+
+    //     const modal = document.getElementById('resultModal');
+    //     modal.style.display = 'block';
+    // });
+
+
     document.querySelector('.close').addEventListener('click', function () {
         document.getElementById('resultModal').style.display = 'none';
     });

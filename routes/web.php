@@ -90,9 +90,10 @@ Route::middleware(['auth', 'role:member,non-member'])->group(function(){
     Route::resource('replies', ReplyController::class);
 
     Route::resource('quiz', QuizController::class);
-    // Route::post('/quiz/submit-points', [QuizController::class, 'submitPoints'])->name('quiz.submitPoints');
+    Route::post('/quiz/submit-points', [QuizController::class, 'submitPoints'])->name('quiz.submitPoints');
 
 
+    Route::get('/leaderboard', [UserController::class, 'leaderboard'])->name('leaderboard.show');
 
 
 });

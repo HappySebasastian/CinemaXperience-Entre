@@ -17,6 +17,31 @@ class UserController extends Controller
         return view('admin.user');
     }
 
+    public function leaderboard()
+    {
+        $globalUsers = User::orderBy('total_points', 'desc')->get();
+        $user = Auth::user();
+
+
+        $friends = $user->FriendColumn()->wherePivot('status', 'accepted')->get();
+        $friendsFromUser = $user->UserColumn()->wherePivot('status', 'accepted')->get();
+
+
+        $localUsers = $friends->merge($friendsFromUser);
+
+        if (!$localUsers->pluck('id')->contains($user->id)) {
+            $localUsers->push($user);
+        }
+
+        $localUsers = $localUsers->unique('id')->sortByDesc('total_points');
+
+        $localUsersArray = $localUsers->values()->toArray();
+        $globalUsersArray = $globalUsers->toArray();
+
+        return view('users.leaderboardPage', compact('globalUsersArray', 'localUsersArray'));
+    }
+
+
     public function userPayment(Request $request)
     {
         $user = User::findOrFail($request->user_id);
