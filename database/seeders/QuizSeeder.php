@@ -15,8 +15,18 @@ class QuizSeeder extends Seeder
     {
         DB::table('quizzes')->insert([
             [
-                'media_id' => 1, // Use integer for foreign key
+                'media_id' => 1,
                 'title' => 'Alchemy of Souls Quizzes',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],[
+                'media_id' => 10,
+                'title' => 'Deadpool & Wolverine Quizzes',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],[
+                'media_id' => 11,
+                'title' => 'The Medium Quizzes',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]
