@@ -99,7 +99,7 @@
 
 <div class="border my-4"></div>
 
-<h2 class="TopTitle text-2xl font-bold">Korean Drama</h2>
+<h2 class="TopTitle text-2xl font-bold">Korean</h2>
 <div class="hero-section flex flex-wrap space-x-1">
 @foreach ($medias as $media)
     @if($media->genre->contains('genre_type', 'korean-drama'))
@@ -117,7 +117,7 @@
 
 <div class="border my-4"></div>
 
-<h2 class="TopTitle text-2xl font-bold">Anggap Saja Action Drama</h2>
+<h2 class="TopTitle text-2xl font-bold">Anggap Saja Action</h2>
 <div class="hero-section flex flex-wrap space-x-1">
 @foreach ($medias as $media)
     @if($media->genre->contains('genre_type', 'action'))

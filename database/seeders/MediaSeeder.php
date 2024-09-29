@@ -126,6 +126,19 @@ class MediaSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]
+        // ,
+        // [
+        //     'title' => 'Deadpool & Wolverine',
+        //     'description' => 'Deadpool is offered a place in the Marvel Cinematic Universe by the Time Variance Authority, but instead recruits a variant of Wolverine to save his universe from extinction.',
+        //     'rating' => 7.9,
+        //     'poster' => 'posts_images/WYWS.jpg',
+        //     'isPremium' => false,
+        //     'released_date' => Carbon::parse('2024-07-25')->toDateString(),
+        //     'genres' => ['action'],
+        //     'source' => '73_1biulkYk',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now(),
+        // ]
         ];
 
 

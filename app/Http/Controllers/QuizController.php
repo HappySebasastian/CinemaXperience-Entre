@@ -44,7 +44,7 @@ class QuizController extends Controller
             // Handle the case where the quiz is not found
             return redirect()->back()->with('error', 'Quiz not found');
         }
-        $questions = Question::where('quiz_id', $quiz->id)->with('answer')->get();
+        $questions = Question::where('quiz_id', $quiz->id)->with('answers')->get();
 
 
         return view('users.quizPage', compact('quiz', 'questions'));
