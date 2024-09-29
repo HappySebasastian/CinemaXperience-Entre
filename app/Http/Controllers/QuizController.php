@@ -31,7 +31,7 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -73,4 +73,19 @@ class QuizController extends Controller
     {
         //
     }
+
+//     public function submitPoints(Request $request)
+// {
+//     $points = $request->input('points');
+//     $user = Auth::user();
+
+//     // Add points to the user's total points
+//     $user->total_point += $points;
+//     $user->save();
+
+//     return response()->json([
+//         'message' => 'Points added successfully',
+//         'total_points' => $user->total_point
+//     ]);
+// }
 }

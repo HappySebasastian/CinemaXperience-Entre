@@ -153,6 +153,25 @@
 
 <div class="border my-4"></div>
 
+<h2 class="TopTitle text-2xl font-bold">Horror</h2>
+<div class="hero-section flex flex-wrap space-x-1">
+@foreach ($medias as $media)
+    @if($media->genre->contains('genre_type', 'horror'))
+    <div id="card" class="cursor-pointer" data-id="{{ $media->id }}" data-title="{{ $media->title }}" data-description="{{ $media->description }}" data-rating="{{ $media->rating }}" data-release="{{ $media->released_date }}" data-image="{{ asset('storage/' . $media->poster) }}">
+        <div class="photo">
+            <img src="{{ asset('storage/' . $media->poster) }}" alt="{{ $media->title }}" class="object-cover w-full h-full">
+        </div>
+        <div class="title">
+            <p>{{ $media->title }}</p>
+        </div>
+    </div>
+    @endif
+@endforeach
+</div>
+
+<div class="border my-4"></div>
+
+
 <div id="popup" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-500 opacity-0 pointer-events-none">
     <div class="rounded-lg shadow-lg p-6 w-11/12 lg:w-3/4 transition-transform duration-500 transform scale-75" style="background-color: #262422;">
         <span class="close text-gray-500 hover:text-gray-800 text-2xl cursor-pointer transition duration-500">&times;</span>
