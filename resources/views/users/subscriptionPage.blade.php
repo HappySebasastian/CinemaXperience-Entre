@@ -15,39 +15,39 @@
 
 <div class="package-container">
     <div class="plan-card">
-        <h3> Silver </h3>
+        <h3> Basic </h3>
         <div class="price">
-            <a id="rp"> Rp </a>
-            <a id="num"> 50 </a>
-            <a id="mo"> /mo </a>
+            {{-- <a id="rp"> Rp </a> --}}
+            <a id="num"> FREE </a>
+            {{-- <a id="mo"> /mo </a> --}}
         </div>
         <a href="{{ route('card') }}" class="choose-plan-button hover:bg-yellow-500"> Choose plan </a>
         <ul>
-            <li>Akses ke semua konten standar</li>
-            <li>Hanya tersedia untuk 1 perangkat</li>
-            <li>Tanpa iklan</li>
-            <li>Streaming dalam resolusi HD</li>
+            <li>3 Watch Party Sessions / Week</li>
+            <li>Limited Content Access</li>
+            <li>Standard Features</li>
+            {{-- <li>Streaming dalam resolusi HD</li> --}}
         </ul>
     </div>
 
     <div class="plan-card">
-        <h3> Gold </h3>
+        <h3> Premium </h3>
         <div class="price">
             <a id="rp"> Rp </a>
-            <a id="num"> 100 </a>
+            <a id="num"> 21 </a>
             <a id="mo"> /mo </a>
         </div>
         <a href="{{ route('card') }}" class="choose-plan-button hover:bg-yellow-500"> Choose plan </a>
         <ul>
-            <li>Akses ke semua konten standar</li>
-            <li>Akses ke semua konten eksklusif</li>
-            <li>Tersedia untuk 2 perangkat</li>
-            <li>Tanpa iklan</li>
-            <li>Streaming dalam resolusi HD</li>
+            <li>Unlimited Watch Party Sessions</li>
+            <li>Exclusive Contents</li>
+            <li>Early Access to New Releases</li>
+            <li>Ad-Free Experiences</li>
+            {{-- <li>Streaming dalam resolusi HD</li> --}}
         </ul>
     </div>
 
-    <div class="plan-card">
+    {{-- <div class="plan-card">
         <h3> Platinum </h3>
         <div class="price">
             <a id="rp"> Rp </a>
@@ -62,7 +62,7 @@
             <li>Tanpa iklan</li>
             <li>Streaming dalam resolusi Ultra HD (4K)</li>
         </ul>
-    </div>
+    </div> --}}
 
 </div>
 
